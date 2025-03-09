@@ -271,7 +271,7 @@
              
             <div class="category-chip">markdown使用</div>
 
-            <div class="category-chip">论文润色</div>
+            <div class="category-chip">机器学习</div>
 
             <div class="category-chip">文献阅读</div>
 
@@ -434,6 +434,38 @@
         </article>
      
 
+         <!-- 机器学习 -->
+         <article class="tool-card" data-category="机器学习">
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="tool-badges">
+                    <span class="badge recommend">编辑推荐</span>
+                </div>
+            </div>
+            <h3 tool-category="Web of Science">Web of Science</h3>
+            <div class="tool-features">
+                <span class="feature-tag">数据科学</span>
+                <span class="feature-tag">机器学习</span>
+
+            </div>
+            <p class="tool-desc">为数据科学家提供了丰富的资源与环境，从竞赛到数据集的分享，再到社区的互动，Kaggle 为各个层次的学习者提供了宝贵的机会</p>
+            <div class="tool-meta">
+                <div class="meta-item">
+                    <i class="fas fa-download"></i>
+                    <span>12万+/月</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-star"></i>
+                    <span>9.2 评分</span>
+                </div>
+            </div>
+            <button class="tool-action" onclick="goToDetailPage('kaggle')">
+                <i class="fas fa-external-link-alt"></i>
+                访问平台
+            </button>
+        </article>
 
 
 
@@ -716,6 +748,11 @@ function goToDetailPage(toolName) {
         case 'OmicShare':
             {
                 window.location.href=`a5.html#tool-${hashId}`
+                break;
+            }
+        case 'kaggle':
+            {
+                window.location.href=`a6.html#tool-${hashId}`
                 break;
             }
        default:break;

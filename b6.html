@@ -219,6 +219,87 @@ mjx-container { break-inside: avoid; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
 :root {
     --side-bar-bg-color: #fafafa;
     --control-text-color: #777;
@@ -775,9 +856,9 @@ header, .context-menu, .megamenu-content, footer{
             content: ""
         }
         
-</style><title>关于Typora嵌入云端视频方法(4)</title>
+</style><title>Kaggle技术文档</title>
 </head>
 <body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='关于typora嵌入云端视频方法'><span>关于Typora嵌入云端视频方法</span></h1><h4 id='1首先我们需要在github上新建一个仓库注意gitee仓库不可行）'><strong><span>1.首先，我们需要在github上新建一个仓库</span></strong><span>（注意gitee仓库不可行）</span></h4><h4 id='2点击aissue选项创建一个新的aissue'><span>2.点击AISSUE选项，创建一个新的AISSUE</span></h4><p><img src="https://gitee.com/liu-taoning666/liutaoning-image/raw/master/img/9710588a9bfe2654e11e4ca55872b55.png" referrerpolicy="no-referrer" alt="9710588a9bfe2654e11e4ca55872b55"></p><h4 id='3将本地视频拖入'><span>3.将本地视频拖入</span></h4><h4><img src="https://i-blog.csdnimg.cn/blog_migrate/159358a8d9cd93300a74a8b98189cd29.png#pic_center" referrerpolicy="no-referrer" alt="img"></h4><h4 id='4嵌入代码'><span>4.嵌入代码</span></h4><p><code>&lt;iframe src=&quot;视频地址&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt;</code></p><p><span>其中src后是你刚刚上传的云端视频地址</span></p><p><img src="https://gitee.com/liu-taoning666/liutaoning-image/raw/master/img/00e28695166366b5014aa149ae4b41a0.png" referrerpolicy="no-referrer" alt="img"></p><p><span>这样你就完成了一个云端视频的嵌入</span></p><h4 id='5示例'><span>5.示例</span></h4><iframe src="https://private-user-images.githubusercontent.com/171015080/419412682-4796f4d7-a74e-4493-b37a-c8d2806cd09d.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDExODU0NTYsIm5iZiI6MTc0MTE4NTE1NiwicGF0aCI6Ii8xNzEwMTUwODAvNDE5NDEyNjgyLTQ3OTZmNGQ3LWE3NGUtNDQ5My1iMzdhLWM4ZDI4MDZjZDA5ZC5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzA1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMwNVQxNDMyMzZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wYTA1YmM2MGZiNjBjZmZkMzkzODNmOGZiY2IyNGY4MDA3NGY4ZjM3NmI2MWEyMmI0ZTJlMzAzN2I4MWNmNzc5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.voR_eSTBs-JF8Je6ksluSqNXqUh4N1ZT6ScTew0sAH8" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><p>&nbsp;</p></div></div>
+<div id='write'  class=''><h1 id='kaggle技术文档'><span>Kaggle技术文档</span></h1><h3 id='一注册kaggle账号'><span>一、注册Kaggle账号</span></h3><ol start='' ><li><p><span>访问</span><a href='https://www.kaggle.com/'><span>Kaggle官网</span></a><span>，点击右上角</span><strong><span>“Register”</span></strong><span>按钮，选择</span><strong><span>”Register with Email“</span></strong><span>填写邮箱、用户名和密码完成注册。</span></p></li><li><p><span>注册完成后需验证邮箱，登录后可在个人主页查看账户状态。建议开启</span><strong><span>双重验证</span></strong><span>以提升安全性。</span></p></li><li><p><span>补充：在注册时可能会遇到</span><strong><span>”Captcha must be filled out“</span></strong><span>，你需要下载一个浏览器插件，在插件商城找到</span><strong><span>”header editor“</span></strong><span>并下载，下载后在扩展里找到它，点击</span><strong><span>”管理“</span></strong><span>，点击</span><strong><span>”导出和导入“</span></strong><span>，在</span><strong><span>”下载规则“</span></strong><span>里输入</span><a href='https://azurezeng.com/static/HE-GoogleRedirect.json' target='_blank' class='url'>https://azurezeng.com/static/HE-GoogleRedirect.json</a><span>，点击右下角的箭头，点击保存即可。之后便可看到人机验证。</span></p></li></ol><hr /><h3 id='二下载并配置kaggle-api'><span>二、下载并配置Kaggle API</span></h3><ol start='' ><li><p><strong><span>获取API Token</span></strong><span>  </span></p><ul><li><p><span>登录后点击头像，选择</span><strong><span>“Settings”</span></strong><span> → </span><strong><span>“API”</span></strong><span>→ </span><strong><span>&quot;Create New Token&quot;</span></strong><span>，自动下载</span><code>kaggle.json</code><span>文件。  </span></p></li></ul></li><li><p><strong><span>配置环境</span></strong><span>  </span></p><ul><li><p><span>将</span><code>kaggle.json</code><span>文件移动到以下目录：  </span></p><ul><li><p><strong><span>Linux/Mac</span></strong><span>: </span><code>~/.kaggle/</code><span>  </span></p></li><li><p><strong><span>Windows</span></strong><span>: </span><code>C:\Users\&lt;用户名&gt;\.kaggle\</code><span>  </span></p></li><li><p><span>没有.kaggle文件可以自己创建一个</span></p></li></ul></li><li><p><span>设置文件权限（仅限Linux/Mac）：  </span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="bash"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="bash"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 19px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 11px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -11px; width: 11px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">chmod</span> <span class="cm-number">600</span> ~/.kaggle/kaggle.json</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div></pre></li></ul></li></ol><hr /><h3 id='三参与竞赛'><span>三、参与竞赛</span></h3><ol start='' ><li><p><strong><span>搜索竞赛</span></strong><span>  </span></p><ul><li><p><span>在官网导航栏点击</span><strong><span>“Competitions”</span></strong><span>，通过分类或关键词（如“Titanic”）查找目标竞赛。  </span></p></li></ul></li><li><p><strong><span>提交结果</span></strong><span>  </span></p><ul><li><p><span>下载数据集：  </span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="bash"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="bash"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 19px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 11px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -11px; width: 11px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kaggle competitions download <span class="cm-attribute">-c</span> &lt;竞赛名称&gt;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div></pre><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="bash"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="bash"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 19px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 11px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -11px; width: 11px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kaggle competitions download <span class="cm-attribute">-c</span> titanic-neuro-kup-induccion</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div></pre><p>&nbsp;</p></li><li><p><span>训练模型生成</span><code>submission.csv</code><span>后提交：  </span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="bash"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="bash"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 19px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 11px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -11px; width: 11px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">kaggle competitions submit <span class="cm-attribute">-c</span> &lt;竞赛名称&gt; <span class="cm-attribute">-f</span> submission.csv <span class="cm-attribute">-m</span> <span class="cm-string">"备注信息"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div></pre></li></ul></li></ol><hr /><h3 id='四使用kaggle-notebook'><span>四、使用Kaggle Notebook</span></h3><ol start='' ><li><p><strong><span>创建Notebook</span></strong><span>  </span></p><ul><li><p><span>点击导航栏</span><strong><span>“Code”</span></strong><span> → </span><strong><span>“New Notebook”</span></strong><span>，选择Python/R环境(</span><strong><span>&quot;File&quot;→language&quot;&quot;</span></strong><span>)及是否启用GPU加速(</span><strong><span>&quot;settings&quot;→”Accelerator“</span></strong><span>)。  </span></p></li></ul></li><li><p><strong><span>导入数据</span></strong><span>  </span></p><ul><li><p><span>在Notebook中点击</span><strong><span>“+ Add Input”</span></strong><span>，搜索并添加公开数据集，或上传本地文件。</span></p></li></ul></li><li><p><strong><span>运行代码</span></strong><span>  </span></p><ul><li><p><span>支持Markdown与代码块混合编写，点击</span><strong><span>“Run All”</span></strong><span>一键执行全部单元格。</span></p></li></ul></li></ol><hr /><h3 id='五管理数据集'><span>五、管理数据集</span></h3><ol start='' ><li><p><strong><span>上传数据集</span></strong><span>  </span></p><ul><li><p><span>点击</span><strong><span>“Upload”</span></strong><span> → </span><strong><span>“New Dataset”</span></strong><span>，上传文件并填写描述信息（需小于20GB）。  </span></p></li></ul></li><li><p><strong><span>版本控制</span></strong><span>  </span></p><ul><li><p><span>每次更新数据后，可生成新版本记录，便于协作与回溯。</span></p></li></ul></li></ol><p><span> </span></p></div></div>
 </body>
 </html>
