@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabGuide - 科研文献工具指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    :root {
+        --primary-blue: #2A5CAA;
+        --background: #F8F9FA;
+        --text-primary: #212529;
+        --border: #DEE2E6;
+        --success: #43a047;
+        --warning: #ffc107;
+        --info: #2196f3;
+    }
+
+    body {
+        background: var(--background);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        color: var(--text-primary);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .science-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .header {
+        border-bottom: 3px solid var(--primary-blue);
+        padding: 2rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .title {
+        font-size: 2.8rem;
+        color: var(--primary-blue);
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        margin: 0;
+    }
+  
+     /* 搜索框样式 */
+     .search-section {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 搜索下拉列表 */
+        ul#drop {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            background-color: white;
+            width: calc(100% - 4px); /* Adjusted to fit within the search box */
+            z-index: 1000;
+            border: 1px solid #ddd;
+            max-height: 200px;
+            overflow-y: auto;
+            left: 2px; /* Ensure it aligns with the search input */
+            top: 48px; /* Position below the search bar */
+        }
+
+        ul#drop li {
+            padding: 8px;
+            cursor: pointer;
+            text-overflow: ellipsis; /* 超出部分用省略号表示 */
+        }
+
+        ul#drop li:hover {
+            background-color: #ddd;
+        }
+
+
+    /* 分类导航 */
+    .category-nav {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .category-chip {
+        padding: 0.6rem 1.2rem;
+        border-radius: 20px;
+        background: rgba(42,92,170,0.1);
+        color: var(--primary-blue);
+        cursor: pointer;
+        transition: background 0.2s;
+        font-size: 0.95rem;
+    }
+
+    .category-chip.active {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    /* 工具卡片 */
+    .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .tool-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.5rem;
+        transition: transform 0.2s;
+        position: relative;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .tool-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.2rem;
+    }
+
+    .tool-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(42,92,170,0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tool-icon i {
+        color: var(--primary-blue);
+        font-size: 1.4rem;
+    }
+
+    .tool-badges {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .badge.free {
+        background: rgba(67, 160, 71, 0.1);
+        color: var(--success);
+    }
+
+    .badge.recommend {
+        background: rgba(255, 193, 7, 0.1);
+        color: var(--warning);
+    }
+
+    .badge.open-source {
+        background: rgba(33, 150, 243, 0.1);
+        color: var(--info);
+    }
+
+    .tool-features {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+    }
+
+    .feature-tag {
+        background: rgba(42,92,170,0.05);
+        color: var(--primary-blue);
+        padding: 0.3rem 0.8rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+    }
+
+    .tool-desc {
+        color: #666;
+        margin: 1rem 0;
+        line-height: 1.5;
+        min-height: 3.6em;
+    }
+
+    .tool-meta {
+        display: flex;
+        justify-content: space-between;
+        margin: 1.5rem -0.5rem 0;
+        padding: 1rem 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .tool-action {
+        width: 100%;
+        padding: 0.8rem;
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        font-size: 1rem;
+    }
+
+    .tool-action:hover {
+        opacity: 0.9;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .science-container {
+            padding: 1.5rem;
+        }
+        .title {
+            font-size: 2.2rem;
+        }
+
+        .search-button {
+            padding: 1rem;
+        }
+
+        .tool-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="science-container">
+        <header class="header">
+            <h1 class="title">LabGuide</h1>
+            <p>科研文献工具指南数据库</p>
+        </header>
+
+        <nav class="category-nav">
+            <!-- Removed "全部工具" module -->
+            <div class="category-chip active">通用大模型</div>
+            <div class="category-chip">markdown使用</div>
+            <div class="category-chip">机器学习</div>
+            <div class="category-chip">数据分析</div>
+            <div class="category-chip">实用工具</div>
+            <div class="category-chip">文献检索</div>
+            <div class="category-chip">文献管理</div>
+            <div class="category-chip">论文写作</div>
+            <div class="category-chip">科研绘图</div>
+        </nav>
+
+
+
+
+
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="输入工具名称或关键词...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>           
+            <ul id="drop"></ul>
+        </section>
+
+
+
+
+
+        <main class="tool-grid">
+            <!-- 通用大模型 -->
+            <article class="tool-card" data-category="通用大模型">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <div class="tool-badges">
+                        <span class="badge recommend">满血性能</span>
+                    </div>
+                </div>
+                <h3 tool-category="deepseek">deepseek</h3>
+                <div class="tool-features">
+                    <span class="feature-tag">深度思考</span>
+                </div>
+                <p class="tool-desc">国产AI，成本性能双优</p>
+                <div class="tool-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-download"></i>
+                        <span>12万+/月</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>9.9 评分</span>
+                    </div>
+                </div>
+                <button class="tool-action" onclick="goToDetailPage('deepseek')">
+                    <i class="fas fa-external-link-alt"></i>
+                    链接直达
+                </button>
+            </article>
+
+            <!-- 视觉大模型 -->
+            <article class="tool-card" data-category="通用大模型">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <div class="tool-badges">
+                        <span class="badge recommend">免费额度</span>
+                    </div>
+                </div>
+                <h3 tool-category="gpt-4o">gpt-4o</h3>
+                <div class="tool-features">
+                    <span class="feature-tag">强劲性能</span>
+                </div>
+                <p class="tool-desc">回答准确</p>
+                <div class="tool-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-download"></i>
+                        <span>12万+/月</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>9.9 评分</span>
+                    </div>
+                </div>
+                <button class="tool-action" onclick="goToDetailPage('gpt-4o')">
+                    <i class="fas fa-external-link-alt"></i>
+                    链接直达
+                </button>
+            </article>
+
+            <!-- markdown使用 -->
+            <article class="tool-card" data-category="markdown使用">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <div class="tool-badges">
+                        <span class="badge recommend">好评如潮</span>
+                    </div>
+                </div>
+                <h3 tool-category="Typora">Typora</h3>
+                <div class="tool-features">
+                    <span class="feature-tag">简洁易用</span>
+                </div>
+                <p class="tool-desc">Markdown 编辑器</p>
+                <div class="tool-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-download"></i>
+                        <span>免费下载</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>9.8 评分</span>
+                    </div>
+                </div>
+                <button class="tool-action" onclick="goToDetailPage('Typora')">
+                    <i class="fas fa-external-link-alt"></i>
+                    链接直达
+                </button>
+            </article>
+
+
+  <!-- 文献检索工具 -->
+  <article class="tool-card" data-category="文献检索">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-search-plus"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">编辑推荐</span>
+        </div>
+    </div>
+    <h3 tool-category="Web of Science">Web of Science</h3>
+    <div class="tool-features">
+        <span class="feature-tag">跨库检索</span>
+        <span class="feature-tag">引文分析</span>
+        <span class="feature-tag">期刊评价</span>
+    </div>
+    <p class="tool-desc">全球核心学术期刊索引数据库，覆盖自然科学、社会科学和艺术人文领域</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-download"></i>
+            <span>12万+/月</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-star"></i>
+            <span>9.2 评分</span>
+        </div>
+    </div>
+    <button class="tool-action">
+        <i class="fas fa-external-link-alt"></i>
+        访问平台
+    </button>
+</article>
+
+<!-- 文献管理工具 -->
+<article class="tool-card" data-category="文献管理">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge free">免费</span>
+            <span class="badge open-source">开源</span>
+        </div>
+    </div>
+    <h3 tool-category="Zotero">Zotero</h3>
+    <div class="tool-features">
+        <span class="feature-tag">参考文献生成</span>
+        <span class="feature-tag">浏览器插件</span>
+        <span class="feature-tag">团队协作</span>
+    </div>
+    <p class="tool-desc">文献收集、管理、引用一站式解决方案，支持Word/LibreOffice集成</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>560万用户</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>87+插件</span>
+        </div>
+    </div>
+    <button class="tool-action">
+        <i class="fas fa-download"></i>
+        下载客户端
+    </button>
+</article>
+
+
+<!-- 论文写作工具 -->
+<article class="tool-card" data-category="论文写作">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-edit"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge free">免费</span>
+        </div>
+    </div>
+    <h3 tool-category="Academic Phrasebank">Academic Phrasebank</h3>
+    <div class="tool-features">
+        <span class="feature-tag">写作模板</span>
+        <span class="feature-tag">例句库</span>
+        <span class="feature-tag">论文结构</span>
+    </div>
+    <p class="tool-desc">提供学术写作常用短语模板，涵盖论文各个章节的典型句式</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-globe"></i>
+            <span>多语言支持</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-file-pdf"></i>
+            <span>PDF指南</span>
+        </div>
+    </div>
+    <button class="tool-action">
+        <i class="fas fa-book"></i>
+        查看模板
+    </button>
+</article>
+
+
+<!-- 科研绘图工具 -->
+<article class="tool-card" data-category="科研绘图">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">推荐</span>
+        </div>
+    </div>
+    <h3 tool-category="OriginLab">OriginLab</h3>
+    <div class="tool-features">
+        <span class="feature-tag">数据可视化</span>
+        <span class="feature-tag">曲线拟合</span>
+        <span class="feature-tag">批量处理</span>
+    </div>
+    <p class="tool-desc">专业的科学绘图与数据分析工具，支持超过100种图表类型</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-cube"></i>
+            <span>25+ 分析工具</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-shapes"></i>
+            <span>3D绘图</span>
+        </div>
+    </div>
+    <button class="tool-action">
+        <i class="fas fa-video"></i>
+        视频教程
+    </button>
+</article>
+
+
+
+
+<article class="tool-card" data-category="科研绘图">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">推荐</span>
+            <span class="badge free">免费</span>
+            <span class="badge open-source">开源</span>
+        </div>
+    </div>
+    <h3 tool-category="Apache ECharts">Apache ECharts</h3>
+    <div class="tool-features">
+        <span class="feature-tag">交互式图表</span>
+        <span class="feature-tag">多图表类型</span>
+        <span class="feature-tag">数据分析</span>
+    </div>
+    <p class="tool-desc">开源JavaScript图表库，支持折线图、柱状图、地图等100+图表类型，提供交互式数据分析和个性化定制功能。</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-globe"></i>
+            <span>多语言支持</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>活跃社区</span>
+        </div>
+    </div>
+    <button class="tool-action" onclick="goToDetailPage('Apache ECharts')">
+        <i class="fas fa-external-link-alt"></i>
+        访问官网
+    </button>
+</article>
+
+
+
+<!--数据分析-->
+<article class="tool-card" data-category="数据分析">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">推荐</span>
+        </div>
+    </div>
+    <h3 tool-category="OmicShare">OmicShare</h3>
+    <div class="tool-features">
+        <span class="feature-tag">数据可视化</span>
+        <span class="feature-tag">曲线拟合</span>
+        <span class="feature-tag">批量处理</span>
+    </div>
+    <p class="tool-desc">专业的科学绘图与数据分析工具，支持超过100种图表类型</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-cube"></i>
+            <span>25+ 分析工具</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-shapes"></i>
+            <span>3D绘图</span>
+        </div>
+    </div>
+    <button class="tool-action"onclick="goToDetailPage('OmicShare')">
+        <i class="fas fa-video"></i>
+        视频教程
+    </button>
+</article>
+
+
+<!-- 实用工具 -->
+
+<article class="tool-card" data-category="实用工具">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">推荐</span>
+        </div>
+    </div>
+    <h3 tool-category="工具邦">工具邦</h3>
+    <div class="tool-features">
+       
+    </div>
+    <p class="tool-desc">多种实用工具</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>活跃社区</span>
+        </div>
+    </div>
+    <button class="tool-action" onclick="goToDetailPage('工具邦')">
+        <i class="fas fa-external-link-alt"></i>
+        访问官网
+    </button>
+</article>
+
+
+<article class="tool-card" data-category="实用工具">
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="tool-badges">
+            <span class="badge recommend">推荐</span>
+        </div>
+    </div>
+    <h3 tool-category="QuickTranslate">QuickTranslate</h3>
+    <div class="tool-features">
+       
+    </div>
+    <p class="tool-desc">多种语言，快速翻译</p>
+    <div class="tool-meta">
+        <div class="meta-item">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>活跃社区</span>
+        </div>
+    </div>
+    <button class="tool-action" onclick="goToDetailPage('QuickTranslate')">
+        <i class="fas fa-external-link-alt"></i>
+        访问官网
+    </button>
+</article>
+
+
+        </main>
+    </div>
+      
+    <script>
+
+
+document.querySelectorAll('.category-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+        document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const category = chip.textContent.trim();
+        filterTools(category);
+    });
+});
+
+function filterTools(category) {
+    const cards = document.querySelectorAll('.tool-card');
+    cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category'); 
+        if (cardCategory === category || category === "全部工具") {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Initialize by filtering tools for the default category
+filterTools('通用大模型');
+// toolName=tool-category;
+function goToDetailPage(toolName) {
+     // 生成标准化的 Hash ID（兼容特殊字符）
+    const hashId = toolName.toLowerCase().replace(/[\s]+/g, '-');
+ 
+    switch(toolName){
+        case 'Apache ECharts':
+            {
+               // 跳转到 detail.html 并携带锚点参数
+            window.location.href = `a1.html#tool-${hashId}`;
+            break;
+            }
+        case 'gpt-4o':
+            { 
+             window.location.href=`a2.html#tool-${hashId}`
+                break;
+            }
+        case 'deepseek':
+            {
+                window.location.href=`a3.html#tool-${hashId}`
+                break;
+            }
+        case 'Typora':
+            {
+                window.location.href=`a4.html#tool-${hashId}`
+                break;
+            }
+        case 'OmicShare':
+            {
+                window.location.href=`a5.html#tool-${hashId}`
+                break;
+            }
+        case 'kaggle':
+            {
+                window.location.href=`a6.html#tool-${hashId}`
+                break;
+            }
+        case '工具邦':
+            {
+                window.location.href=`a7.html#tool-${hashId}`
+                break;
+            }
+        case 'QuickTranslate':
+            {
+                window.location.href=`a8.html#tool-${hashId}`
+                break;
+            }
+       default:break;
+
+    }
+}
+
+var arr = ["deepseek", "gpt-4o", "Typora", "Web of Science", "OmicShare", "Apache ECharts","工具邦","QuickTranslate"];
+        
+var search = document.getElementById("search-input");
+var drop = document.getElementById("drop");
+
+function showList() {
+    drop.innerHTML = ''; 
+    var res = searchByIndexOf(search.value, arr);
+
+    res.forEach(item => {
+        var li = document.createElement("li");
+        li.textContent = item;
+        li.addEventListener('click', function() {
+            search.value = item;
+            drop.innerHTML = ''; 
+            filterTools('全部工具'); // Reset category filter when selecting from dropdown
+            goToDetailPage(item); // Add this line to go to detail page on selection
+        });
+        drop.appendChild(li);
+    });
+
+    drop.style.display = res.length > 0 ? "block" : "none";
+}
+
+search.addEventListener('input', showList);
+   
+search.addEventListener('blur', function() {
+    setTimeout(() => {
+        drop.style.display = 'none';
+    }, 200);
+});
+
+
+// 搜索键的实现
+document.querySelector(".search-button").addEventListener('click', function(event) {
+    event.preventDefault();
+    showList();
+    if (search.value) { // Check if there is any input value
+        goToDetailPage(search.value); // Go to detail page based on input value
+    }
+});
+
+function searchByIndexOf(keyWord, list) {
+    if (!Array.isArray(list)) return [];
+    return keyWord ? list.filter(item => item.toLowerCase().includes(keyWord.toLowerCase())) : [];
+}
+    </script>
+</body>
+</html>
+
+
+
